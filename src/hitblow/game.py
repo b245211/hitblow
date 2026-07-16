@@ -15,8 +15,19 @@ def play(digits=3):
 
     # ===== ① 開始時に足す（難易度・あいさつ など）: ここに書く =====
 
+    max_tries = 10
+    print(f"10回以内にあててね")
+
     tries = 0
     while True:
+
+        if tries >= max_tries:
+            print(f"残念！ゲームオーバー…（答えは {secret} でした）")
+            break
+            
+        remaining = max_tries - tries
+        print(f"--- [残り {remaining} 回] ---")
+        
         guess = input("予想 > ").strip()
 
         # ===== ② 入力コマンドに足す（ヒント など）: ここに書く（import もここに） =====
