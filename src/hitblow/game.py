@@ -30,6 +30,14 @@ def play(digits=3):
         tries += 1
         hit, blow = judge(secret, guess)
         print(f"  Hit={hit}  Blow={blow}")
+
+        if tries == 5:
+            odd = sum(int(d) % 2 == 1 for d in secret)
+            even = digits - odd
+            print("=== ヒント ===")
+            print(f"答えには奇数が {odd} 個、偶数が {even} 個含まれています。")
+
+
         if hit == digits:
 
             # ===== ③ 勝利時に足す（スコア・履歴 など）: ここに書く =====
