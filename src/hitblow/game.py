@@ -10,10 +10,13 @@ from .core import judge, make_secret
 
 
 def play(digits=3):
-    secret = make_secret(digits)
-    print(f"Hit & Blow（{digits} 桁・重複なし）")
 
     # ===== ① 開始時に足す（難易度・あいさつ など）: ここに書く =====
+
+    from .duplicate import ask_duplicate
+
+    allow_duplicate = ask_duplicate()
+    secret = make_secret(digits, allow_duplicate)
 
     max_tries = 10
     print(f"10回以内にあててね")
