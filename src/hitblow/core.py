@@ -16,7 +16,16 @@ def judge(secret, guess):
     common = sum(min(secret.count(d), guess.count(d)) for d in set(guess))
     return hits, common - hits
 
+def make_secret(digits=3, allow_duplicate=False):
+    """答えを作る。"""
 
-def make_secret(digits=3):
-    """重複なしの digits 桁の答えを作る。"""
+    if allow_duplicate:
+        # 重複あり
+        return "".join(
+            random.choice("0123456789")
+            for _ in range(digits)
+        )
+
+    # 重複なし
     return "".join(random.sample("0123456789", digits))
+
