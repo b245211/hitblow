@@ -53,8 +53,13 @@ def play(digits=3):
 
 
         if hit == digits:
+            from .score import calculate_score, get_score_message  # ★ スコア計算・メッセージ用インポート
 
+            final_score = calculate_score(tries)
+            message = get_score_message(final_score)
+            
             # ===== ③ 勝利時に足す（スコア・履歴 など）: ここに書く =====
-
+            print(f"【最終スコア】 {final_score}点")
+            print(f"{message}")
             print(f"正解！ {tries} 回で当たり（答え {secret}）")
             break
