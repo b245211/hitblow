@@ -25,7 +25,9 @@ def play(digits=3):
     while True:
 
         if tries >= max_tries:
-            print(f"残念！ゲームオーバー…（答えは {secret} でした）")
+            print("10回使い切りました！")
+            print(f"残念!あなたの負けです…!")
+            print(f"答えは {secret} でした")
             break
             
         remaining = max_tries - tries
@@ -41,9 +43,16 @@ def play(digits=3):
         if len(guess) != digits or not guess.isdigit():
             print(f"{digits} 桁の数字で入力してね")
             continue
+
         tries += 1
+
+        from .score import calculate_score
+
+        score = calculate_score(tries)
+
         hit, blow = judge(secret, guess)
         print(f"  Hit={hit}  Blow={blow}")
+        print(f"  暫定スコア：{score}点")
 
         if tries == 5:
             odd = sum(int(d) % 2 == 1 for d in secret)
