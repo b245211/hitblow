@@ -1,10 +1,10 @@
 # score.py
 """スコア計算および判定を行うモジュール"""
 
-INITIAL_SCORE = 1500  # 初期スコア
+INITIAL_SCORE = 2000  # 初期スコア
 
 
-def calculate_score(tries: int) -> int:
+def calculate_score(tries: int, elapsed_time: int = 0) -> int:
     """試行回数に応じて残りのスコアを計算する
 
     - 1〜4回目: 1回ごとに 100点 減点
@@ -18,8 +18,12 @@ def calculate_score(tries: int) -> int:
         else:
             score -= 200
 
+    #  時間による減点
+    score -= elapsed_time  * 10       
+
     # スコアがマイナスにならないようにガード（必要に応じて）
-    return max(0, score)
+    #return max(0, score)
+    return score
 
 
 def get_score_message(score: int) -> str:
